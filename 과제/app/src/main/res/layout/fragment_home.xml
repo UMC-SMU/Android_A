@@ -246,9 +246,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -285,9 +284,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -323,14 +321,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/img_album_exp2"/>
+                            android:src="@drawable/img_album_exp2" />
                     </androidx.cardview.widget.CardView>
                     <TextView
                         android:id="@+id/home_todayrelease_album3_title_tv"
@@ -395,9 +393,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -433,9 +430,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -471,9 +467,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -535,9 +530,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="320dp"
                             android:layout_height="180dp"
@@ -573,9 +567,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="320dp"
                             android:layout_height="180dp"
@@ -611,9 +604,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="10dp"
-                        tools:ignore="MissingConstraints">
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
                         <ImageView
                             android:layout_width="320dp"
                             android:layout_height="180dp"
