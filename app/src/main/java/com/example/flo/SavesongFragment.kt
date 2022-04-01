@@ -5,21 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.flo.databinding.FragmentBannerBinding
+import com.example.flo.databinding.FragmentSavesongBinding
 
-class BannerFragment(val imgRes : Int) : Fragment() {
-    lateinit var binding : FragmentBannerBinding
+class SavesongFragment : Fragment() {
+    lateinit var binding : FragmentSavesongBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBannerBinding.inflate(inflater,container,false) //binding 초기화
-
-        binding.bannerImageIv.setImageResource(imgRes)  //이밎 뷰의 src 값 변경
-
+        binding = FragmentSavesongBinding.inflate(inflater,container,false)
         return binding.root
     }
-
 }

@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         bannerAdaper.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
         bannerAdaper.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2))
         binding.homeBannerVp.adapter = bannerAdaper //뷰페이저와 어뎁터 연결
-        binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL    // 뷰페이저가 좌우로 스크롤 가능
 
         return binding.root
     }

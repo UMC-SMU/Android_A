@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.lockerFragment -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, LockerFragment())
+                        .replace(R.id.main_frm, LoockerFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+ <androidx.core.widget.NestedScrollView
+     android:layout_width="match_parent"
+     android:layout_height="0dp"
+     android:fillViewport="true"
+     android:orientation="vertical"
+     android:overScrollMode="never"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintBottom_toBottomOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+         
+        <LinearLayout
+            android:id="@+id/detail_album_title_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/detail_album_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="앨범명"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/detail_album_title_lilac_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IU 5th Album 'LILAC'"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:layout_marginStart="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_album_artist_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@id/detail_album_title_layout"
+            app:layout_constraintTop_toBottomOf="@id/detail_album_title_layout">
+
+            <TextView
+                android:id="@+id/detail_album_artist_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아티스트"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/detail_album_artist_iu_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이유 (IU)"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_album_publisher_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@id/detail_album_artist_layout"
+            app:layout_constraintTop_toBottomOf="@id/detail_album_artist_layout">
+
+            <TextView
+                android:id="@+id/detail_album_publisher_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="발매사"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/detail_album_publisher_kakao_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="카카오엔터테이먼트"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:layout_marginStart="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_album_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_album_publisher_layout">
+
+            <TextView
+                android:id="@+id/detail_album_info_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="앨범소개"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/iu_album_info"
+                android:textSize="12sp"/>
+
+
+
+
+        </LinearLayout>
+
+
+      
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+   </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
