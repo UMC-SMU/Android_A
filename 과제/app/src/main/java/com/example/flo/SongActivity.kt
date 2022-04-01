@@ -1,5 +1,7 @@
 package com.example.flo
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,8 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
     // 바인딩은 전역변수에 선언해야한다.
 
     lateinit var binding : ActivitySongBinding // 레이아웃 xml 파일에 스네이크식 이름으로 매칭되는 거 자동 변환
+    private var isCircular:Boolean = false
+    private var isRandom:Boolean = false
     // lateinit은 전방 선언, 선언은 지금하고 초기화는 나중
     // 코틀린에서 변수를 선언하는 방법
     // var은 나중에 값 변경 가능, val은 나중에 값 변경 불가
@@ -39,6 +43,30 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
             setPlayerStatus(true)
         }
 
+        binding.songRepeatIv.setOnClickListener {
+            // 함수를 만듦으로써 직관성을 높임
+            if (isCircular == true) {
+                setCircularStatus(false)
+                isCircular = false
+            }
+            else {
+                setCircularStatus(true)
+                isCircular = true
+            }
+        }
+
+        binding.songRandomIv.setOnClickListener {
+            // 함수를 만듦으로써 직관성을 높임
+            if (isRandom == true) {
+                setRandomStatus(false)
+                isRandom = false
+            }
+            else {
+                setRandomStatus(true)
+                isRandom = true
+            }
+        }
+
         // intent로 받아오는 부분
         // 데이터가 담겨올 수도 있고 아닐 수도 있다.
         if (intent.hasExtra("title") && intent.hasExtra("singer")) { // "title"과 "singer"라는 키값을 갖는 것이 intent 안에 있는가?
@@ -57,6 +85,26 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
         {
             binding.songMiniplayerIv.visibility = View.GONE // 재생버튼 없애기
             binding.songPauseIv.visibility = View.VISIBLE // 정지버튼 표시
+        }
+    }
+
+    fun setCircularStatus(isCircular : Boolean) {
+        if(isCircular) {
+            binding.songRepeatIv.setColorFilter(Color.parseColor("#3f3fff"), PorterDuff.Mode.SRC_ATOP) // 재생버튼 표시
+        }
+        else
+        {
+            binding.songRepeatIv.setColorFilter(null)
+        }
+    }
+
+    fun setRandomStatus(isRandom : Boolean) {
+        if(isRandom) {
+            binding.songRandomIv.setColorFilter(Color.parseColor("#3f3fff"), PorterDuff.Mode.SRC_ATOP) // 재생버튼 표시
+        }
+        else
+        {
+            binding.songRandomIv.setColorFilter(null)
         }
     }
 

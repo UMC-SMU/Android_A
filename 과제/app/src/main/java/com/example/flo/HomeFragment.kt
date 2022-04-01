@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.viewpager2.widget.ViewPager2
 import com.example.flo.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -35,6 +36,22 @@ class HomeFragment : Fragment() {
             // 메인 액티비티의 프레임 레이아웃을 앨범 프래그먼트로 대체
             //commitAllowingStateLoss()은 내부적으로 동작하는 거라 신경 쓸 필요 없음
         }
+
+        val bannerAdapter = BannerVPAdapter(this)// 새 어댑터 클래스 만들어야
+        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp)) // 괄호 안에는 추가할 프래그먼트
+        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2)) // 여러 이미지 추가
+
+        binding.homeBannerVp.adapter = bannerAdapter // 어댑터와 뷰페이저 연결
+        binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 좌우로 스크롤될 수 있게
+
+        val panelAdapter = PanelVPAdapter(this)// 새 어댑터 클래스 만들어야
+        panelAdapter.addFragment(PanelFragment(R.drawable.img_first_album_default, "포근하게 덮어주는 꿈의\n목소리")) // 괄호 안에는 추가할 프래그먼트
+        panelAdapter.addFragment(PanelFragment(R.drawable.img_album_exp, "달밤의 감성 산책")) // 여러 이미지 추가
+        panelAdapter.addFragment(PanelFragment(R.drawable.img_album_exp2, "아무 타이틀")) // 여러 이미지 추가
+
+        binding.homePanelVp.adapter = panelAdapter // 어댑터와 뷰페이저 연결
+        binding.homePanelVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 좌우로 스크롤될 수 있게
+
         return binding.root
     }
 }
