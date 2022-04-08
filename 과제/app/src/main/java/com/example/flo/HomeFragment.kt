@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flo.databinding.FragmentHomeBinding
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
 
@@ -52,6 +53,21 @@ class HomeFragment : Fragment() {
         binding.homePanelVp.adapter = panelAdapter // 어댑터와 뷰페이저 연결
         binding.homePanelVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 좌우로 스크롤될 수 있게
 
+        val autoBanner = AutoBanner(panelAdapter)
+        autoBanner.start()
+
         return binding.root
     }
+    inner class AutoBanner(var panelAdapter: PanelVPAdapter) : Thread() {
+        var idx = 1
+
+        override fun run() {
+            while (true) {
+                sleep(1000L)
+                binding.homePanelVp.setCurrentItem(idx % panelAdapter.itemCount)
+                idx++
+            }
+        }
+    }
+
 }

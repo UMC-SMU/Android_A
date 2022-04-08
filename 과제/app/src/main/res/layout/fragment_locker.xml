@@ -38,7 +38,6 @@
         app:tabGravity="start"
         app:tabIndicatorFullWidth="false"
         android:layout_marginStart="10dp"
-        app:tabTextAppearance="@style/tabTextSizeBold"
         app:layout_constraintTop_toBottomOf="@id/locker_title_tv"
         app:layout_constraintStart_toStartOf="parent"/>
     <androidx.viewpager2.widget.ViewPager2

@@ -6,8 +6,10 @@
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/drawable/indicator_dot_off.xml" value="0.1546875" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/drawable/indicator_dot_on.xml" value="0.1546875" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/drawable/round.xml" value="0.2859375" />
-        <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/drawable/splash.xml" value="0.1546875" />
+        <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/activity_main.xml" value="0.2125506072874494" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/activity_song.xml" value="0.223731884057971" />
+        <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/activity_splash.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/fragment_album.xml" value="0.2" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/fragment_banner.xml" value="0.21105072463768115" />
         <entry key="..\:/Users/ASDF/AndroidStudioProjects/udemy_android/udemy_android_template_bottomnavi-main/app/src/main/res/layout/fragment_detail.xml" value="0.21105072463768115" />
