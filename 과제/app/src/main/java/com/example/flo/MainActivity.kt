@@ -9,12 +9,14 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.flo.databinding.ActivityMainBinding
+import com.google.gson.Gson
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var song: Song
+    private var gson: Gson = Gson()
     lateinit var timer: Timer
     lateinit var progressBar: ProgressBar
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false)
+        song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false, "music_proust")
 
         timer = Timer(song.playTime, song.isPlaying, 0f)
         progressBar = ProgressBar()
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("second", song.second)
             intent.putExtra("playTime", song.playTime)
             intent.putExtra("isPlaying", song.isPlaying)
+            intent.putExtra("music", song.music)
             intent.putExtra("mills", progressBar.getMills())
             Log.d("main play", binding.mainProgressSb.progress.toString())
             Log.d("main->song intent:", song.second.toString() + song.isPlaying.toString())
@@ -62,6 +65,23 @@ class MainActivity : AppCompatActivity() {
         //Log.d("Song", song.title + song.singer) // logcat에 이 태그를 출력하는데 나중에 이걸로 검색할 수 있다.
     }
 
+    private fun setMiniPlayer(song: Song) {
+        binding.mainMiniplayerTitleTv.text = song.title
+        binding.mainMiniplayerSingerTv.text = song.singer
+        binding.mainProgressSb.progress = (song.second*100000)/song.playTime
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // sharedPreferences의 이름이 "song"
+        val songJson = sharedPreferences.getString("song", null) // sharedPreferences 안에 저장된 데이터의 키 이름 "song"
+        song = if (songJson == null){
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_proust")
+        } else {
+            gson.fromJson(songJson, Song::class.java)
+        }
+        setMiniPlayer(song)
+    }
 
     var getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result:ActivityResult ->
         if (result.resultCode == RESULT_OK && result.data!!.hasExtra("returnMillsSecond")){

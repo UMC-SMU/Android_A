@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo.databinding.ActivitySongBinding
+import com.google.gson.Gson
 import java.lang.Exception
 
 class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 : 사용하고 괄호 쓴다, AppCompatActivity는 안드로이드 기능을 사용할 수 있게 해준다.
@@ -24,6 +26,8 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
 
     lateinit var song : Song
     lateinit var timer: Timer
+    private var mediaPlayer: MediaPlayer? = null // ?는 nullable의 의미. 액티비티가 해제될 때 미디어 플레이어를 해제해야하기 때문에
+    private var gson: Gson = Gson()
 
     private var isCircular:Boolean = false
     private var isRandom:Boolean = false
@@ -87,10 +91,37 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
 
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        timer.interrupt()
-//    }
+    //포커스 잃었을 때 중지
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.interrupt()
+        mediaPlayer?.release() // 미디어 플레이어가 갖고 있던 리소스 해제
+        mediaPlayer = null // 미디어 플레이어 해제
+    }
+
+    // 사용자가 포커스를 잃었을 때 음악이 중지
+    override fun onPause() {
+        super.onPause()
+        setPlayerStatus(false)
+        song.second = ((binding.songProgressSb.progress * song.playTime)/100)/ 1000
+
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // 내부 저장소에 데이터를 저장
+        // 앱이 종료되었다가 다시 실행되어도 이곳에 저장된 값을 사용 가능
+        // 설정값 등에 사용
+        // 로그인할 때 비밀번호 기억 등에도 사용
+        // MODE_PRIVATE: 이 앱에서만 사용 가능
+        // sharedPreference는 에디터로만 사용 가능
+
+        val editor = sharedPreferences.edit() // 에디터 만들기, put을 통해 넣는다.
+        // editor.putString("title", song.title) // 이런 식으로 song에 있는 데이터 수만큼 할 수도 있지만 번거로우니까 json 형식으로 보낼 것.
+        // 자바 객체를 json으로 간편하게 변환시켜주는 라이브러리 추가
+
+        val songJson = gson.toJson(song) // java 객체를 json 포맷으로 변환
+        editor.putString("song", songJson)
+
+        editor.apply() // 여기까지 해야 실제로 저장작업 깃의 푸시와 같은 것
+    }
+
     private fun startTimer(){
         timer = Timer(song.playTime, song.isPlaying)
         timer.setMills(intent.getFloatExtra("mills", 0f))
@@ -104,7 +135,8 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
                 intent.getStringExtra("singer")!!,
                 intent.getIntExtra("second", 0),
                 intent.getIntExtra("playTime", 0),
-                intent.getBooleanExtra("isPlaying", false)
+                intent.getBooleanExtra("isPlaying", false),
+                intent.getStringExtra("music")!!
             )
         }
         startTimer()
@@ -116,6 +148,10 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
         binding.songStartTimeTv.text = String.format("%02d:%02d", song.second/60, song.second%60)
         binding.songEndTimeTv.text = String.format("%02d:%02d", song.playTime/60, song.playTime%60)
         binding.songProgressSb.progress = (song.second * 1000 / song.playTime)
+
+        val music = resources.getIdentifier(song.music, "raw", this.packageName)
+        mediaPlayer = MediaPlayer.create(this, music)
+
         setPlayerStatus(song.isPlaying)
     }
 
@@ -127,11 +163,15 @@ class SongActivity : AppCompatActivity() { // 코틀린에서는 extends 대신 
         if(isPlaying) {
             binding.songMiniplayerIv.visibility = View.GONE // 재생버튼 없애기
             binding.songPauseIv.visibility = View.VISIBLE // 정지버튼 표시
+            mediaPlayer?.start()
         }
         else
         {
             binding.songMiniplayerIv.visibility = View.VISIBLE // 재생버튼 표시
             binding.songPauseIv.visibility = View.GONE // 정지버튼 없애기
+            if(mediaPlayer?.isPlaying == true) {
+                mediaPlayer?.pause()
+            }
         }
     }
 
