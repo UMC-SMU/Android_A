@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:id="@+id/video_choice_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="최신순"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:background="#00ff0000"/>
+            
+            <LinearLayout
+                android:id="@+id/mv_coin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/video_choice_btn">
+
+                <ImageView
+                    android:id="@+id/mv_coin_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/coin_mv"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_coin_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[MV]Coin"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_coin_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.26"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_lilac_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_coin_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_coin_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_coin_layout">
+
+                <ImageView
+                    android:id="@+id/mv_lilac_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/lilac_mv"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_lilac_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[MV]라일락(LILAC)"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_lilac_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.25"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_lilac_tizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_coin_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_coin_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_lilac_layout">
+
+                <ImageView
+                    android:id="@+id/mv_lilac_tizer_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/lilac_mv_tizer"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_lilac_tizer_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[티저]라일락(LILAC)"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_lilac_tizer_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.24"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_coin_tizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_lilac_tizer_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_lilac_tizer_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_lilac_tizer_layout">
+
+                <ImageView
+                    android:id="@+id/mv_coin_tizer_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/mv_coin_tizer"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_coin_tizer_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[티저]Coin"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_coin_tizer_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.22"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_epilogue_tizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_coin_tizer_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_coin_tizer_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_coin_tizer_layout">
+
+                <ImageView
+                    android:id="@+id/mv_epilogue_tizer_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/mv_epilogue"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_epilogue_tizer_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[티저]에필로그"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_epilogue_tizer_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.19"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_flu_tizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_epilogue_tizer_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_epilogue_tizer_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_epilogue_tizer_layout">
+
+                <ImageView
+                    android:id="@+id/mv_flu_tizer_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/flu_tizer"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_flu_tizer_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[티저]Flu"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_flu_tizer_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.03.12"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_celebrity_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_flu_tizer_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_flu_tizer_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_flu_tizer_layout">
+
+                <ImageView
+                    android:id="@+id/mv_celebrity_tizer_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/mv_celebrity"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_celebrity_tizer_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[MV]celebrity"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_celebrity_tizer_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.01.27"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mv_celebrity_tizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/mv_celebrity_layout"
+                app:layout_constraintEnd_toEndOf="@id/mv_celebrity_layout"
+                app:layout_constraintTop_toBottomOf="@id/mv_celebrity_layout">
+
+                <ImageView
+                    android:id="@+id/mv_celebrity_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/celebrity_tizer"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:id="@+id/mv_celebrity_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[티저]celebrity"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mv_celebrity_artist_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="아이유(IU) | 2021.01.25"
+                    android:layout_marginStart="30dp"
+                    />
+
+            </LinearLayout>
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
