@@ -201,4 +201,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     } // binding 변수를 사용해야 하므로 inner class로 구현
+
+    private fun inputDummySongs() {
+        val songDB = SongDatabase.getInstance(this)
+        // DB 데이터 받아오기
+
+
+    }
 }

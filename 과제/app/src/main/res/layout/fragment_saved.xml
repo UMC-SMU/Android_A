@@ -2,15 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/all_select_iv"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/btn_playlist_select_off"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
+        android:id="@+id/all_select_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="저장한 곡이 없습니다."
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="전체선택"
+        app:layout_constraintTop_toTopOf="@id/all_select_iv"
+        app:layout_constraintBottom_toBottomOf="@id/all_select_iv"
+        app:layout_constraintStart_toEndOf="@id/all_select_iv"/>
+
+    <ImageView
+        android:id="@+id/all_play_iv"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/icon_browse_arrow_right"
+        app:layout_constraintStart_toEndOf="@id/all_select_tv"
+        app:layout_constraintTop_toTopOf="@id/all_select_iv"/>
+    <TextView
+        android:id="@+id/all_play_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전체듣기"
+        app:layout_constraintTop_toTopOf="@id/all_play_iv"
+        app:layout_constraintBottom_toBottomOf="@id/all_play_iv"
+        app:layout_constraintStart_toEndOf="@id/all_play_iv"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/saved_album_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        tools:listitem="@layout/item_album_vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/all_select_iv"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
