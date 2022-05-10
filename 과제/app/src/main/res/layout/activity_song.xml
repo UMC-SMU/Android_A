@@ -107,6 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/song_singer_more_iv">
 
         <ImageView
+            android:id="@+id/song_album_iv_i"
             android:layout_width="280dp"
             android:layout_height="280dp"
             android:scaleType="centerCrop"

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        inputDummySongs()
         song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false, "music_proust")
 
         timer = Timer(song.playTime, song.isPlaying, 0f)
@@ -33,22 +34,11 @@ class MainActivity : AppCompatActivity() {
         progressBar.start()
 
         binding.mainPlayerCl.setOnClickListener {
-            song.second = (progressBar.getMills()/1000).toInt()
-
-            var intent = Intent(this, SongActivity::class.java)
-            // intent라는 택배 상자에 데이터라는 물건을 담아서
-            intent.putExtra("title", song.title) // "title"이라는 키로 타이틀 담아주기
-            intent.putExtra("singer", song.singer) // "singer"라는 키로 가수 이름 담아주기
-            intent.putExtra("second", song.second)
-            intent.putExtra("playTime", song.playTime)
-            intent.putExtra("isPlaying", song.isPlaying)
-            intent.putExtra("music", song.music)
-            intent.putExtra("mills", progressBar.getMills())
-            Log.d("main play", binding.mainProgressSb.progress.toString())
-            Log.d("main->song intent:", song.second.toString() + song.isPlaying.toString())
-            getContent.launch(intent)
-        // startActivity(intent)
-            //startActivity(Intent(this, SongActivity::class.java))
+            val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
+            editor.putInt("songId", song.id)
+            editor.apply()
+            val intent = Intent(this, SongActivity::class.java)
+            startActivity(intent)
         }
 
         binding.mainMiniplayerBtn.setOnClickListener {
@@ -58,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         binding.mainPauseBtn.setOnClickListener {
             setPlayerStatus(false)
         }
-
 
         initBottomNavigation()
 
@@ -73,29 +62,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // sharedPreferences의 이름이 "song"
-        val songJson = sharedPreferences.getString("song", null) // sharedPreferences 안에 저장된 데이터의 키 이름 "song"
-        song = if (songJson == null){
-            Song("라일락", "아이유(IU)", 0, 60, false, "music_proust")
-        } else {
-            gson.fromJson(songJson, Song::class.java)
+//        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // sharedPreferences의 이름이 "song"
+//        val songJson = sharedPreferences.getString("song", null) // sharedPreferences 안에 저장된 데이터의 키 이름 "song"
+//        song = if (songJson == null){
+//            Song("라일락", "아이유(IU)", 0, 60, false, "music_proust")
+//        } else {
+//            gson.fromJson(songJson, Song::class.java)
+//        }
+
+        val spf = getSharedPreferences("song", MODE_PRIVATE)
+        val songId = spf.getInt("songId", 0)
+
+        val songDB = SongDatabase.getInstance(this)!!
+
+        song = if (songId == 0) { // sharedPreferences에 저장된 기존에 틀던 노래 없을 때
+            songDB.songDao().getSong(1)
+        } else{
+            songDB.songDao().getSong(songId) // 아이디로 검색해서 가져오기
         }
+
+        Log.d("song ID", song.id.toString())
+
         setMiniPlayer(song)
     }
 
-    var getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result:ActivityResult ->
-        if (result.resultCode == RESULT_OK && result.data!!.hasExtra("returnMillsSecond")){
-            var data: Intent? = result.data
-            var mills:Float = data!!.getFloatExtra("returnMillsSecond", 0f)
-            var playing:Boolean = data!!.getBooleanExtra("returnIsPlaying", false)
-            Log.d("main->song get intent:", mills.toString() + playing.toString())
-            song.second = (mills/1000).toInt()
-            timer.setPlayMills(mills)
-            progressBar.setMills(mills)
-            progressBar.setMainPlaying(true)
-            setPlayerStatus(playing)
-        }
-    }
     private fun initBottomNavigation(){
 
         supportFragmentManager.beginTransaction()
@@ -203,9 +193,54 @@ class MainActivity : AppCompatActivity() {
     } // binding 변수를 사용해야 하므로 inner class로 구현
 
     private fun inputDummySongs() {
-        val songDB = SongDatabase.getInstance(this)
-        // DB 데이터 받아오기
+        val songDB = SongDatabase.getInstance(this)!!
 
+        // DB 데이터 전부받아오기
+        val songs = songDB.songDao().getSongs()
 
+        // 소스가 비어있지 않다면(데이터가 원래 있다면)
+        if (songs.isNotEmpty()) return
+
+        // 비어 있는 경우에만 더미 데이터
+        songDB.songDao().insert(
+            Song(
+                "Boy with Luv",
+                "music_boy",
+                0,
+                230,
+                false,
+                "music_proust",
+                R.drawable.img_album_exp,
+                false
+            )
+        )
+        songDB.songDao().insert(
+            Song(
+                "Boy with Luv2",
+                "music_boy",
+                0,
+                230,
+                false,
+                "music_proust",
+                R.drawable.img_album_exp2,
+                false
+            )
+        )
+        songDB.songDao().insert(
+            Song(
+                "Boy with Luv3",
+                "music_boy",
+                0,
+                230,
+                false,
+                "music_proust",
+                R.drawable.img_album_exp,
+                false
+            )
+        )
+
+        // DB에 잘 들어갔는지 확인
+        val _songs = songDB.songDao().getSongs()
+        Log.d("DB data", _songs.toString())
     }
 }
