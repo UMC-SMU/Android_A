@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.example.flo.databinding.FragmentAlbumBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 
 // Fragment의 기능을 사용할 수 있는 클래스인 Fragment를 상속
 class AlbumFragment : Fragment() {
     lateinit var binding : FragmentAlbumBinding// 바인딩 선언
 
     private val information = arrayListOf("수록곡", "상세정보", "영상")
+
+    private var gson: Gson = Gson()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,12 +27,10 @@ class AlbumFragment : Fragment() {
         binding = FragmentAlbumBinding.inflate(inflater, container, false) // activity에서 사용한 인플레이터
 
         super.onCreate(savedInstanceState)
-        setFragmentResultListener("requestKey") { requestKey, bundle ->
-            // We use a String here, but any type that can be put in a Bundle is supported
-            val result = bundle.getString("bundleKey")
-            binding.albumMusicTitleTv.text = result
-            // Do something with the result
-        }
+
+        val albumJson = arguments?.getString("album") // json 꺼내기
+        val album = gson.fromJson(albumJson, Album::class.java) // 앨범 객체로 변환
+        setInit(album) // 표시
 
         binding.albumBackIv.setOnClickListener {
             (context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.main_frm, HomeFragment()).commitAllowingStateLoss()
@@ -48,6 +49,12 @@ class AlbumFragment : Fragment() {
         }.attach() // 탭 레이아웃과 뷰 페이저 붙이기
 
         return binding.root
+    }
+
+    private fun setInit(album:Album){
+        binding.albumAlbumIv.setImageResource(album.coverImg!!)
+        binding.albumMusicTitleTv.text = album.title.toString()
+        binding.albumSingerNameTv.text = album.singer.toString()
     }
 
 }

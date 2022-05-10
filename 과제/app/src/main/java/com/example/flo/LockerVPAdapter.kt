@@ -13,4 +13,6 @@ class LockerVPAdapter(fragment:Fragment) : FragmentStateAdapter(fragment) {
             else -> MusicfilesFragment() // 1
         }
     }
+
+
 }
