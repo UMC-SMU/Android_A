@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         inputDummySongs()
+        inputDummyAlbums()
         song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false, "music_proust")
 
         timer = Timer(song.playTime, song.isPlaying, 0f)
@@ -62,13 +63,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // sharedPreferences의 이름이 "song"
-//        val songJson = sharedPreferences.getString("song", null) // sharedPreferences 안에 저장된 데이터의 키 이름 "song"
-//        song = if (songJson == null){
-//            Song("라일락", "아이유(IU)", 0, 60, false, "music_proust")
-//        } else {
-//            gson.fromJson(songJson, Song::class.java)
-//        }
 
         val spf = getSharedPreferences("song", MODE_PRIVATE)
         val songId = spf.getInt("songId", 0)
@@ -242,5 +236,40 @@ class MainActivity : AppCompatActivity() {
         // DB에 잘 들어갔는지 확인
         val _songs = songDB.songDao().getSongs()
         Log.d("DB data", _songs.toString())
+    }
+    private fun inputDummyAlbums() {
+        val songDB = SongDatabase.getInstance(this)!!
+
+        // DB 데이터 전부받아오기
+        val albums = songDB.albumDao().getAlbums()
+
+        // 소스가 비어있지 않다면(데이터가 원래 있다면)
+        if (albums.isNotEmpty()) return
+
+        // 비어 있는 경우에만 더미 데이터
+        songDB.albumDao().insert(
+            Album(
+                0,
+                "music_boy",
+                "asdf",
+                R.drawable.img_album_exp
+            )
+        )
+        songDB.albumDao().insert(
+            Album(
+                1,
+                "music_boy2",
+                "asdf2",
+                R.drawable.img_album_exp2
+            )
+        )
+        songDB.albumDao().insert(
+            Album(
+                2,
+                "music_boy3",
+                "asdf3",
+                R.drawable.img_album_exp
+            )
+        )
     }
 }
